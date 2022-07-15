@@ -32,6 +32,13 @@ class Home : Fragment(R.layout.fragment_home) {
     private var ReAdapter : RecyclerAdapter? = null
     private var list : ArrayList<CardGroup> = ArrayList()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        ReAdapter = RecyclerAdapter(list)
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -54,7 +61,6 @@ class Home : Fragment(R.layout.fragment_home) {
                         try {
                             list.addAll(it.value.card_groups)
                             Log.d("LogTag", list.toString())
-                            ReAdapter = RecyclerAdapter(list)
                             binding?.contextualCard?.recycler?.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
                             binding?.contextualCard?.recycler?.adapter = ReAdapter
                         } catch (e: Exception) {
