@@ -1,7 +1,7 @@
 package com.example.contextualcards.models
 
 data class Card(
-    val bg_color: String,
+    val bg_color: String?,
     val bg_image: BgImage,
     val cta: List<Cta>,
     val description: String,

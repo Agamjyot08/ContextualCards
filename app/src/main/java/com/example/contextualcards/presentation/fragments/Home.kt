@@ -11,7 +11,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.contextualcards.R
-import com.example.contextualcards.adapter.RecyclerAdapter
+import com.example.contextualcards.adapter.NestedHomeAdapter
 import com.example.contextualcards.data.Resource
 import com.example.contextualcards.databinding.FragmentHomeBinding
 import com.example.contextualcards.models.CardGroup
@@ -29,13 +29,13 @@ class Home : Fragment(R.layout.fragment_home) {
     private val viewModel: ViewModel by viewModels()
     @Inject
     lateinit var progress: CShowProgress
-    private var ReAdapter : RecyclerAdapter? = null
+    private var ReAdapter : NestedHomeAdapter? = null
     private var list : ArrayList<CardGroup> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        ReAdapter = RecyclerAdapter(list)
+        ReAdapter = NestedHomeAdapter(list)
 
     }
 
