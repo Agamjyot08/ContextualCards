@@ -3,6 +3,7 @@ package com.example.contextualcards.adapter
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.graphics.Color
 import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
@@ -84,8 +85,8 @@ class RecyclerAdapter(private var cardGroup: ArrayList<Card>, private val design
         var itemView1: Hc1CardItemBinding
         @SuppressLint("SetTextI18n")
         fun setHc1Card(cardgrp: Card) {
-                itemView1.root.setCardBackgroundColor(cardgrp.bg_color?.toColorInt() ?: return)
-                itemView1.textview.text = cardgrp.name
+                itemView1.root.setCardBackgroundColor(cardgrp.bg_color?.toColorInt() ?: Color.WHITE)
+                itemView1.textview.text = cardgrp.title
                 itemView1.imageView.load(cardgrp.icon.image_url)
                 itemView1.root.isEnabled = !cardgrp.is_disabled
 
@@ -93,7 +94,6 @@ class RecyclerAdapter(private var cardGroup: ArrayList<Card>, private val design
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(cardgrp.url))
                     startActivity(it.context, intent, null)
                 }
-//            }
         }
 
         init {

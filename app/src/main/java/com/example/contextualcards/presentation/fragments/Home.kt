@@ -60,6 +60,7 @@ class Home : Fragment(R.layout.fragment_home) {
                     is Resource.Success -> {
                         hideProgress()
                         try {
+                            list.clear()
                             list.addAll(it.value.card_groups)
                             Log.d("LogTag", list.toString())
                             binding?.contextualCard?.recycler?.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
