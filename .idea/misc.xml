@@ -11,8 +11,10 @@
         <entry key="app/src/main/res/layout/contextual_card.xml" value="0.2078804347826087" />
         <entry key="app/src/main/res/layout/custom_progress_layout.xml" value="0.2078804347826087" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1364288330078124" />
-        <entry key="app/src/main/res/layout/hc1_card_item.xml" value="0.2078804347826087" />
+        <entry key="app/src/main/res/layout/hc1_card_item.xml" value="0.46141284445057745" />
         <entry key="app/src/main/res/layout/hc3_card_item.xml" value="0.2078804347826087" />
+        <entry key="app/src/main/res/layout/hc5_card_item.xml" value="0.2078804347826087" />
+        <entry key="app/src/main/res/layout/hc6_card_item.xml" value="0.2078804347826087" />
         <entry key="app/src/main/res/layout/hc9_card_item.xml" value="0.2078804347826087" />
         <entry key="app/src/main/res/layout/recycler_item_card.xml" value="0.1" />
       </map>

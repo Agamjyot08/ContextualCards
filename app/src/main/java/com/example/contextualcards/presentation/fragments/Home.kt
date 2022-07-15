@@ -17,6 +17,7 @@ import com.example.contextualcards.databinding.FragmentHomeBinding
 import com.example.contextualcards.models.CardGroup
 import com.example.contextualcards.presentation.viewmodel.ViewModel
 import com.example.contextualcards.utils.CShowProgress
+import com.example.contextualcards.utils.handleApiError
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.*
@@ -69,7 +70,7 @@ class Home : Fragment(R.layout.fragment_home) {
                     }
                     is Resource.Failure ->{
                         hideProgress()
-
+                        this@Home.handleApiError(requireContext(), it)
                     }
                     is Resource.Loading ->{
                         showprogress()

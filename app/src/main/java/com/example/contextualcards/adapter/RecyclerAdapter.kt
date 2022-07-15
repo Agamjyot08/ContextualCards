@@ -84,13 +84,6 @@ class RecyclerAdapter(private var cardGroup: ArrayList<Card>, private val design
         var itemView1: Hc1CardItemBinding
         @SuppressLint("SetTextI18n")
         fun setHc1Card(cardgrp: Card) {
-//            if (cardgrp.is_scrollable){
-//                var list  = cardgrp.cards as ArrayList
-//                list.clear()
-//                NestedHomeAdapter(list)
-//                itemRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-//                itemRecycler.adapter = nestedHomeAdapter
-//            }else{
                 itemView1.root.setCardBackgroundColor(cardgrp.bg_color?.toColorInt() ?: return)
                 itemView1.textview.text = cardgrp.name
                 itemView1.imageView.load(cardgrp.icon.image_url)
@@ -158,7 +151,10 @@ class RecyclerAdapter(private var cardGroup: ArrayList<Card>, private val design
         fun setHc6Card(cardgrp: Card) {
             itemView3.imageView.load(cardgrp.icon.image_url)
             itemView3.text.text = cardgrp.description
-            itemView3.root.setOnClickListener{
+
+            itemView3.root.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(cardgrp.url))
+                startActivity(it.context, intent, null)
             }
         }
 
@@ -175,6 +171,11 @@ class RecyclerAdapter(private var cardGroup: ArrayList<Card>, private val design
             layoutParams.dimensionRatio = cardgrp.bg_image.aspect_ratio.toString()
             itemView4.imageView.load(cardgrp.bg_image.image_url)
             itemView4.root.isEnabled = !cardgrp.is_disabled
+
+            itemView4.root.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(cardgrp.url))
+                startActivity(it.context, intent, null)
+            }
         }
 
         init {
