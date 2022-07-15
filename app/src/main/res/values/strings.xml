@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Contextual Cards</string>
     <string name="na">na</string>
+    <string name="sample_text">This is a sample text for the subtitle that you can add to contextual cards</string>
 </resources>

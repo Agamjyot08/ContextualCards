@@ -2,6 +2,7 @@ package com.example.contextualcards.adapter
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
@@ -84,17 +85,20 @@ class RecyclerAdapter(private var cardGroup: ArrayList<CardGroup>) : RecyclerVie
         var itemView1: Hc1CardItemBinding
         @SuppressLint("SetTextI18n")
         fun setHc1Card(cardgrp: CardGroup) {
-
-//            itemView1.root.isScrollContainer = cardgrp.is_scrollable
-
-            for(i in cardgrp.cards){
-                itemView1.root.setCardBackgroundColor(i.bg_color?.toColorInt() ?: return)
-                itemView1.textview.text = i.name
-                itemView1.imageView.load(i.icon.image_url)
-                itemView1.root.isEnabled = !i.is_disabled
+            if (cardgrp.is_scrollable){
+                var list  = cardgrp.cards as ArrayList
+//                list.clear()
+//                NestedHomeAdapter(list)
+//                itemRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+//                itemRecycler.adapter = nestedHomeAdapter
+            }else{
+                itemView1.root.setCardBackgroundColor(cardgrp.cards[0].bg_color?.toColorInt() ?: return)
+                itemView1.textview.text = cardgrp.cards[0].name
+                itemView1.imageView.load(cardgrp.cards[0].icon.image_url)
+                itemView1.root.isEnabled = !cardgrp.cards[0].is_disabled
 
                 itemView1.root.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(i.url))
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(cardgrp.cards[0].url))
                     startActivity(it.context, intent, null)
                 }
             }
@@ -108,23 +112,20 @@ class RecyclerAdapter(private var cardGroup: ArrayList<CardGroup>) : RecyclerVie
     internal class ViewHolderHc3(itemview3: Hc3CardItemBinding) :
         RecyclerView.ViewHolder(itemview3.root) {
         var itemView3: Hc3CardItemBinding
+
         fun setHc3Card(reward: CardGroup) {
+            itemView3.imageView4.load(reward.cards[0].bg_image.image_url)
+            itemView3.textView.text = reward.cards[0].title
+            itemView3.textView2.text = reward.cards[0].description
+            itemView3.constraintLayout.backgroundTintList = ColorStateList.valueOf(reward.cards[0].bg_color?.toColorInt() ?: return);
 
-            for(i in reward.cards) {
-                itemView3.imageView.load(i.bg_image.image_url)
-                itemView3.head.text = i.title
-                itemView3.subtitle.text = i.description
-                itemView3.root.setBackgroundColor(i.bg_color?.toColorInt() ?: return)
-
-                itemView3.button.text = i.cta[0].text
-                itemView3.button.setBackgroundColor(i.cta[0].bg_color.toColorInt())
-                itemView3.button.setTextColor(i.cta[0].text_color.toColorInt())
-                itemView3.button.setOnClickListener{
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(i.url))
-                    startActivity(it.context, intent, null)
-                }
+            itemView3.button.text = reward.cards[0].cta[0].text
+            itemView3.button.setBackgroundColor(reward.cards[0].cta[0].bg_color.toColorInt())
+            itemView3.button.setTextColor(reward.cards[0].cta[0].text_color.toColorInt())
+            itemView3.button.setOnClickListener{
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(reward.cards[0].url))
+                startActivity(it.context, intent, null)
             }
-
         }
 
         init {
@@ -137,16 +138,13 @@ class RecyclerAdapter(private var cardGroup: ArrayList<CardGroup>) : RecyclerVie
         var itemView5: Hc5CardItemBinding
         fun setHc5Card(cardgrp: CardGroup) {
 
-            for(i in cardgrp.cards) {
-                itemView5.root.setBackgroundColor(i.bg_color?.toColorInt() ?: return)
-                itemView5.imageView.load(i.bg_image.image_url)
+            itemView5.root.setBackgroundColor(cardgrp.cards[0].bg_color?.toColorInt() ?: return)
+            itemView5.imageView.load(cardgrp.cards[0].bg_image.image_url)
 
-                itemView5.root.setOnClickListener {
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(i.url))
-                    startActivity(it.context, intent, null)
-                }
+            itemView5.root.setOnClickListener {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(cardgrp.cards[0].url))
+                startActivity(it.context, intent, null)
             }
-
         }
 
         init {
@@ -162,7 +160,6 @@ class RecyclerAdapter(private var cardGroup: ArrayList<CardGroup>) : RecyclerVie
             itemView3.imageView.load(cardgrp.cards[0].icon.image_url)
             itemView3.text.text = cardgrp.cards[0].description
             itemView3.root.setOnClickListener{
-
             }
         }
 
@@ -175,7 +172,6 @@ class RecyclerAdapter(private var cardGroup: ArrayList<CardGroup>) : RecyclerVie
         RecyclerView.ViewHolder(itemview4.root) {
         var itemView4: Hc9CardItemBinding
         fun setHc9Card(cardgrp: CardGroup) {
-
             val layoutParams = itemView4.imageView.layoutParams as ConstraintLayout.LayoutParams
             layoutParams.dimensionRatio = cardgrp.cards[0].bg_image.aspect_ratio.toString()
             itemView4.imageView.load(cardgrp.cards[0].bg_image.image_url)

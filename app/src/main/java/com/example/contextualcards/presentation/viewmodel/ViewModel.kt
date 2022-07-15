@@ -5,12 +5,14 @@ import androidx.lifecycle.viewModelScope
 import com.example.contextualcards.data.Resource
 import com.example.contextualcards.models.APIResponse
 import com.example.contextualcards.repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class ViewModel @Inject constructor(private var repository: Repository) : ViewModel() {
 
     private val _getDataRes = MutableStateFlow<Resource<APIResponse>>(Resource.Initial)
